@@ -1,0 +1,53 @@
+{% extends 'Home/base.html' %}
+
+{% block css %}
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css' %}"/>
+
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+<div class="col-sm-4">
+    <div class="circle circle1" id="detailcircle">
+        <h2>{{ forum.topic }}<br><p>{{forum.content }}</p><br><p>{{forum.user_name}}</p></h2>
+    </div>
+</div>
+</div>
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+<div class="container">
+    {% for t in thread %}
+        {% if t.forum_no == forum %}
+            <div class="panel panel-default">
+
+              <div class="panel-body" style="margin-bottom:-85px;">
+                  <p>{{t.post}}</p>
+                  <p><small>-Username: {{ t.user_name }}</small></p>
+                  {% if t.user_name == request.user.username %}
+                  <p><a href="{% url 'Home:delpost' t.pk forum.forum_id %}"><button type="button" class="btn btn-default">Delete Post</button></a></p>
+                  {% endif %}
+                  <p style="text-align:right;">{{ t.timestamp }}</p>
+
+
+              </div>
+                <br><br><br>
+
+            </div>
+        {% endif %}
+
+    {% endfor %}
+
+    <a href="{% url 'Home:community' %}"><button type="button" class="btn btn-default">View All</button></a>
+    <a href="{% url 'Home:create_post' forum.forum_id %}"><button type="button" class="btn btn-default">Add New Post</button></a>
+    {% if forum.user_name == request.user.username %}
+    <a href="{% url 'Home:delforum' forum.forum_id %}"><button type="button" class="btn btn-default">Delete Forum</button></a>
+    {% endif %}
+</div>
+
+
+{% endblock %}

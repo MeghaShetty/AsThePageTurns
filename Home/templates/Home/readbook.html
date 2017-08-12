@@ -1,0 +1,61 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+{% block css %}
+ <link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css'%}">
+{% endblock %}
+
+{% block body %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'Home:home' %}">Home</a></li>
+    <li><a href="{% url 'Home:prologue' book.bok_id book.author %}">Prologue: {{book.title}}</a></li>
+    <li class="active">Reading: {{book.title}}</li>
+</ol>
+
+
+    {% for chap in obj.object_list %}
+        <h3 align="center" style="padding-top:20px">Chapter {{chap.chapter_no}}</h3>
+        <hr id="partition">
+        <div class="container" id="formtemp">
+	        <div class="login-container">
+                {% block content %}
+                    <div class="content">
+                            <div class="container-fluid">
+                            <h3>{{chap.chapter_title}}</h3>
+                                <hr id="partition">
+                                <br><br><br>
+
+                            </div>
+                    </div>
+                {% endblock %}
+                <div class="form-box">
+                    {% block formbody %}
+                            {{chap.chapter_content}}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <center>
+        <a href="{% url 'Home:bookmark' book.bok_id chap.chapter_no %}" class="btn btn-default secondary-bg btn-lg"><img src="{% static 'Home/images/bookmark.png'%}" style="width: 20px; height: 20px">Bookmark</a>
+        <a href="{% url 'Home:gtstart' book.bok_id %}" class="btn btn-default secondary-bg btn-lg">Go to the start</a>
+        </center>
+{% endfor %}
+    <div class="text-center">
+        <div class="pagination">
+            <ul class="pagination">
+                {% if obj.has_previous %}
+                    <li><a href="?page={{obj.previous_page_number}}">Previous</a></li>
+                {% endif %}
+                {% for pg in obj.paginator.page_range %}
+                    {% if obj.number == pg %}
+                        <li class="active"><a href="?page={{ pg }}">{{ pg }}</a> </li>
+                    {% else %}
+                        <li><a href="?page={{ pg }}">{{ pg }}</a> </li>
+                    {% endif %}
+                {%  endfor%}
+                {% if obj.has_next %}
+                    <li><a href="?page={{obj.next_page_number}}">Next</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

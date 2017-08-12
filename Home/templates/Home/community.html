@@ -1,0 +1,42 @@
+{% extends 'Home/base.html' %}
+
+{% block css%}
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css' %}"/>
+
+{% endblock %}
+
+
+
+{% block body %}
+<div class="panel panel-default" style="background-color: transparent; border: transparent">
+    <div class="panel-body">
+        <h2 align="center">Community</h2>
+        <h2 align="center">Be a part of the most interesting discussions. You can get suggestions about what to read next or even get an idea for your next book!</h2>
+        <br>
+        <hr id="partition">
+    </div>
+</div>
+    {% if forums %}
+    <div class="container">
+        <h2 align="center">Here's a list of ongoing forums!</h2>
+    </div>
+
+<div class="container">
+
+{% for forum in forums %}
+    <div class="col-sm-4">
+        <a href="{% url 'Home:detail' forum.pk %}">
+            <div class="circle circle1">
+              <h2>{{ forum.topic }}<br><p>{{forum.content }}</p></h2>
+            </div></a>
+          </div>
+
+{% endfor %}
+</div>
+{% else %}
+        <h3>Oops! No discussions yet! Start a discussion now!</h3>
+{% endif %}
+    <div class="text-center"><a href="{% url 'Home:create_forum' %}"><button type="button" class="btn btn-default">Start a new discussion</button></a></div>
+{% endblock %}

@@ -1,0 +1,287 @@
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 100%; padding: 0; margin: 0;}
+
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+.navbar {
+  background-color: #1f7a7a;
+  border: transparent;
+  margin-bottom: 0;
+}
+
+.navbar-custom .navbar-brand {
+  color: white;
+  font-size: 30px;
+  font-family: "Lobster Two";
+  padding-left: 20%;
+  padding-right: 15%;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus {
+  color: white;
+  background-color: transparent;
+  transform: scale(1.2);
+}
+.navbar-custom .navbar-text {
+  color: white;
+}
+.navbar-custom .navbar-nav > li:last-child > a {
+  border-right:1px solid transparent;
+}
+.navbar-custom .navbar-nav > li > a {
+  color: white;
+  font-size: 20px;
+}
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus {
+  color: white;
+  background-color: transparent;
+    transform: scale(1.2);
+
+}
+
+.navbar-custom .navbar-nav > .disabled > a,
+.navbar-custom .navbar-nav > .disabled > a:hover,
+.navbar-custom .navbar-nav > .disabled > a:focus {
+  color: white;
+  background-color: transparent;
+}
+
+.navbar-custom .navbar-toggle {
+  border-color: transparent;
+}
+
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: transparent;
+    transform: scale(1.2);
+}
+.navbar-custom .navbar-toggle .icon-bar {
+  background-color: transparent;
+}
+.navbar-custom .navbar-collapse,
+.navbar-custom .navbar-form {
+  border-color: transparent;
+}
+.navbar-custom .navbar-nav > .dropdown > a:hover .caret,
+.navbar-custom .navbar-nav > .dropdown > a:focus .caret {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+    transform: scale(1.2);
+}
+.navbar-custom .navbar-nav > .open > a,
+.navbar-custom .navbar-nav > .open > a:hover,
+.navbar-custom .navbar-nav > .open > a:focus {
+  background-color: transparent;
+  color: white;
+    transform: scale(1.2);
+}
+.navbar-custom .navbar-nav > .open > a .caret,
+.navbar-custom .navbar-nav > .open > a:hover .caret,
+.navbar-custom .navbar-nav > .open > a:focus .caret {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+.navbar-custom .navbar-nav > .dropdown > a .caret {
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+@media (max-width: 767) {
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+    transform: scale(1.2);
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: white;
+    background-color: transparent;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: white;
+    background-color: transparent;
+  }
+}
+.navbar-custom .navbar-link {
+  color: black;
+}
+.navbar-custom .navbar-link:hover {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+.navbar-right{
+  padding-right: 5%;
+  margin-right: 0;
+}
+
+#custom-search-input{
+  width: 450px;
+  height:30px;
+  appearance: none;
+  border: 0;
+  margin-top: 1%;
+  margin-left: 3%;
+  }
+
+
+#search:hover{
+  background-color: transparent;
+}
+
+li,
+#placeholder{
+    font-size: 20px;
+}
+
+li:hover{
+    text-decoration: none;
+    color:black;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+    transform: scale(1.2);
+}
+
+.glyphicon:hover{
+    -moz-transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-ms--transform: rotate(360deg);
+	transform: rotate(360deg);
+	-webkit-transition: all 0.8s;
+	-moz-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	-ms-transition: all 0.8s;
+	transition: all 0.8s;
+}
+.container-fluid{
+  margin : 0;
+    width:100%;
+    min-height:100%;
+    padding:0;
+}
+
+body{
+  background-color: #ebfafa;
+  margin:0;
+  height:100%;
+}
+
+.login-container{
+    position: relative;
+    width: 50%;
+    margin: 80px auto;
+    padding: 20px 40px 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+
+}
+.login-container::before,.login-container::after{
+    content: "";
+    position: absolute;
+    width: 100%;height: 100%;
+    top: 3.5px;left: 0;
+    background: #fff;
+    z-index: -1;
+    -webkit-transform: rotateZ(4deg);
+    -moz-transform: rotateZ(4deg);
+    -ms-transform: rotateZ(4deg);
+    border: 1px solid #ccc;
+
+}
+
+.login-container::after{
+    top: 5px;
+    z-index: -2;
+    -webkit-transform: rotateZ(-2deg);
+     -moz-transform: rotateZ(-2deg);
+      -ms-transform: rotateZ(-2deg);
+
+}
+.form-box input{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    height:40px;
+    border: 1px solid #ccc;;
+    background: #fafafa;
+    transition:0.2s ease-in-out;
+
+}
+
+.form-box input:focus{
+    outline: 0;
+    background: #eee;
+}
+
+.form-box input[type="text"]{
+    border-radius: 5px 5px 0 0;
+    text-transform: lowercase;
+}
+
+.form-box input[type="password"]{
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+}
+
+.form-box button.login{
+    margin-top:15px;
+    padding: 10px 20px;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+#comm{
+  background-color: #1F7A7A;
+  color: white;
+}
+
+.btn-default{
+  color: white;
+  background-color: #1f7a7a;
+}
+
+.btn-default:hover , .btn-default >.active, .btn-default>.disabled{
+  color: white;
+  background-color: #1f7a7a;
+}
+
+select{
+    width: 50%;
+}
+
+#coverform{
+    width: 50%;
+}
+
+input{
+    text-align: center;
+}
+
+#partition{
+	border: 0;
+    height: 2px;
+    background: #ebfafa;
+    background-image: linear-gradient(to right, #ebfafa, #1f7a7a, #ebfafa);
+}
+

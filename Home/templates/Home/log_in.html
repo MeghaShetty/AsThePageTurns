@@ -1,0 +1,113 @@
+<html>
+	<head>
+        {% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'Home/atpt.css'%}">
+		<link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Lobster+Two:700italic' rel='stylesheet' type='text/css'>
+		<title>
+			AsThePageTurns
+		</title>
+		<SCRIPT type="text/javascript">
+		window.history.forward();
+		function noBack() { window.history.forward(); }
+		</SCRIPT>
+		{% block css %}
+		{% endblock %}
+
+	</head>
+	<body onload="noBack();"
+	onpageshow="if (event.persisted) noBack();" onunload="">
+
+		<div class="header" align=center>AsThePageTurns</div>
+
+		<div class="slideshow-container">
+
+		<div class="mySlides fade">
+  		<img src ="{% static 'Home/images/mystery.jpg'%}" style='position:fixed;top:50px;left:0px;width:100%;height:100%;z-index:-1;'>
+  		<div class="text-center"><div class="text">Mystery</div></div>
+		</div>
+
+		<div class="mySlides fade">
+ 		<img src ="{% static 'Home/images/romance.jpg'%}" style='position:fixed;top:50px;left:0px;width:100%;height:100%;z-index:-1;'>
+  		<div class="text-center"><div class="text">Romance</div></div>
+		</div>
+
+		<div class="mySlides fade">
+  		<img src ="{% static 'Home/images/fiction.jpg'%}" style='position:fixed;top:50px;left:0px;width:100%;height:100%;z-index:-1;'>
+  		<div class="text-center"><div class="text">Fiction</div></div>
+		</div>
+
+		<div class="mySlides fade">
+  		<img src ="{% static 'Home/images/fantasy.jpg'%}" style='position:fixed;top:50px;left:0px;width:100%;height:100%;z-index:-1;'>
+  		<div class="text-center"><div class="text" id="backtext">Fantasy</div></div>
+		</div>
+
+		<div class="mySlides fade">
+  		<img src ="{% static 'Home/images/short_stories.jpg'%}" style='position:fixed;top:50px;left:0px;width:100%;height:100%;z-index:-1;'>
+  		<div class="text-center"><div class="text" id="backtext">Short Stories</div></div>
+		</div>
+
+		<div class="mySlides fade">
+  		<img src ="{% static 'Home/images/horror.jpg'%}" style='position:fixed;top:50px;left:0px;width:100%;height:100%;z-index:-1;'>
+  		<div class="text-center"><div class="text">Horror</div></div>
+		</div>
+
+		<div class="mySlides fade">
+  		<img src ="{% static 'Home/images/humour.jpg'%}" style='position:fixed;top:50px;left:0px;width:100%;height:100%;z-index:-1;'>
+  		<div class="text-center"><div class="text">Humour</div></div>
+
+		</div>
+
+		</div>
+		<br>
+
+		<div style="text-align:center">
+  		<span class="dot"></span>
+  		<span class="dot"></span>
+  		<span class="dot"></span>
+		<span class="dot"></span>
+		<span class="dot"></span>
+		<span class="dot"></span>
+		<span class="dot"></span>
+		</div>
+
+
+		<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex> slides.length) {slideIndex = 1}
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+
+	</script>
+		<div class="registration text-center">
+			{% if error_message %}
+				<p><strong class="text-danger">{{ error_message }}</strong></p>
+			{% endif %}
+			<form class="reg" action="" method="POST">{% csrf_token %}
+			<input type="text" name="username" placeholder="Username" required="True"><br><br><br>
+			<input type="password" name="password" placeholder="Password" required="True"><br><br><br>
+			<input type="submit" id="signup" value="Log In!">
+			</form>
+		<p style="left: 45%"><a href="{% url 'reset_password_reset1' %}">Forgot Password? </a></p>
+		<p style="left: 8%">I've never been here before! <a href="{% url 'Home:register' %}">Sign Up!</a></p>
+		</div>
+</body>
+
+		{% block body %}
+		{% endblock %}
+</html>

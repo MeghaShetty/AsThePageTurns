@@ -1,0 +1,72 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css'%}">
+{% endblock %}
+
+
+{% block body %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'Home:home' %}">Home</a></li>
+    <li><a href="{% url 'Home:profile' %}">My Profile</a></li>
+    <li class="active">Liked Books</li>
+</ol>
+
+
+ <h2 align="center"><b>Your Likes</b></h2>
+
+<h2 align="center">Between the pages of the book is a lovely place to be!</h2>
+<hr id="partition">
+{% if lib %}
+<div class="container-fluid">
+
+            <ul class="grid effect-7" id="grid">
+           {% for bk in lb %}
+                <li>
+                    <div class="grid"><div id="descrip" ><a href="{% url 'Home:prologue' bk.book.bok_id bk.book.author %}"><img src="{{ bk.book.coverpage.url }}"></a>
+                    <hr id="newpart"><p>
+                            <a href="{% url 'Home:prologue' bk.book.bok_id bk.book.author %}">{{ bk.book.title }}</a></p>
+                        <hr>
+                    <div class="chip">
+                            {% if user.is_authenticated %}
+                                <p id="au1"><b>Author:</b> <a href="{% url 'Home:other_user' bk.book.author %}">  {{bk.book.author}} </a></p>
+                            {% else %}
+                                <p id="au2"><b>Author:</b> <a href="{% url 'Home:log_in' %}">  {{bk.book.author}} </a></p>
+                            {% endif %}
+                            {% for g in gen %}
+                                {% if g.genre_id == bk.book.genre %}
+                                        <p><b>Genre:</b>  {{ g.genre }}</p>
+                                {% endif %}
+                            {% endfor %}
+                    <h5><img src="{% static 'Home/images/like.png'%}" style="width: 20px; height: 20px"> {{bk.book.no_of_likes}} likes</h5>
+                    </div>
+                    </div>
+                    </div>
+                </li>
+                {% endfor %}
+
+            </ul>
+
+</div>
+
+
+        {% load static %}
+        <script src="{% static 'Home/modernizr.custom.js' %}"></script>
+		<script src="{% static 'Home/masonry.pkgd.min.js' %}"></script>
+		<script src="{% static 'Home/imagesloaded.js' %}"></script>
+		<script src="{% static 'Home/classie.js' %}"></script>
+		<script src="{% static 'Home/AnimOnScroll.js' %}"></script>
+		<script>
+			new AnimOnScroll( document.getElementById( 'grid' ), {
+				minDuration : 0.4,
+				maxDuration : 0.7,
+				viewportFactor : 0.2
+			} );
+		</script>
+
+{% else %}
+<h2 align="center">You have not liked any book yet!</h2>
+  {% endif %}
+
+{% endblock %}

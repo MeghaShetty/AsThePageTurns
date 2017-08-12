@@ -1,0 +1,48 @@
+{% extends 'Home/base.html' %}
+
+{% block css%}
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css' %}"/>
+
+{% endblock %}
+
+
+{% block body %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'Home:home' %}">Home</a></li>
+    <li><a href="{% url 'Home:community' %}">Community</a></li>
+    <li class="active">Add New Post</li>
+</ol>
+
+
+<div class="container" id="formtemp">
+	<div class="login-container">
+        {% block content %}
+        <div class="content">
+                <div class="container-fluid">
+                <h3>Add a new post</h3><br><br><br>
+                {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                    <br><br><br>
+                {% endif %}
+
+    </div>
+    </div>
+        {% endblock %}
+        <div class="form-box">
+            {% block formbody %}
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label for="posts">Your Post :</label>
+                        <input type="text" name="posts" id="posts"><br><br><br>
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-default">Submit</button><br><br><br>
+                            </div>
+                    </form>
+            </div>
+            {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'Home/base.html' %}
+
+
+{% block css%}
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css' %}"/>
+
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-default" style="background-color: transparent; border: transparent">
+    <div class="panel-body">
+        <h2 align="center">Write your own book!</h2>
+        <h2 align="center">Let your words paint a beautiful picture in your readers' imagination!</h2>
+        <hr id="partition">
+    </div>
+</div>
+<div class="container" id="formtemp">
+	<div class="login-container">
+        {% block content %}
+        <div class="content">
+                <div class="container-fluid">
+                <h3>Let's start designing your book</h3><br><br><br>
+                    <hr id="partition">
+                {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                    <hr id="partition">
+                    <br><br><br>
+                {% endif %}
+
+    </div>
+    </div>
+        {% endblock %}
+        <div class="form-box">
+            {% block formbody %}
+                    <form action="" method="POST" enctype="multipart/form-data" id="createbook">
+                        {% csrf_token %}
+                        <label for="title"> Book Title :</label><br>
+                        <input type="text" name="title" id="title"><br><br><br>
+                        <label for="genr"> Select a Genre:</label><br>
+                        <select name="genr" id = "genr">
+                        {% for g in gen %}
+                            <option value="{{g.genre_id}}">{{g.genre}}</option>
+                        {% endfor %}
+                        </select><br><br><br>
+                        <label for="coverform"> Select a Coverpage:</label><br>
+                        <center><input type="file" name = "coverpage" id="coverform"></center><br><br><br>
+                        <label for="prologue"> Give us a gist of the book!</label><br>
+                        <textarea name="prologue" id="prologue" form="createbook" style="width: 100%">
+                        </textarea><br><br><br>
+                        <a href="{% url 'Home:createstory' %}"><button type="submit" class="btn btn-default">Save</button></a><br><br>
+                        <a href="{% url 'Home:home' %}"><button type="button" class="btn btn-default">Cancel</button></a><br><br><br>
+                    </form>
+            {% endblock %}
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+a{
+    color: white;
+}
+
+.header{
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	height: 50px;
+	background-color: #1f7a7a;
+	color:#ffffff;
+	font-family: 'Lobster Two', cursive;
+	font-size: 40px;
+	position: fixed;
+}
+
+input{
+    width: 400px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 10px;
+}
+
+
+
+#signup{
+	background-color: #1f7a7a;
+	color:#ffffff;
+}
+
+body {
+	font-family: Verdana,sans-serif;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  position: fixed;
+}
+
+/* Caption text */
+
+
+@-webkit-keyframes typing { from { width: 0; } }
+@-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
+
+
+.text {
+ font: bold 2em monospace;
+    position: fixed;
+    left: 40%;
+  top: 85px;
+  color: #1F7A7A;
+	border-right: .1em solid white;
+	width: calc(0.55em * 14);
+	width: 14ch;
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-animation: typing 3s steps(14, end),
+	           blink-caret .5s step-end infinite alternate;
+     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+.mySlides img{
+    opacity: 0.5;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media{
+  .text {font-size: 75px}
+}
+
+.active {
+  background-color: #717171;
+}
+
+p{
+	font-family: 'Lobster Two', cursive;
+	font-size: 150%;
+	color: #ffffff;
+    left: 3%;
+	position: relative;
+  	text-shadow: 2px 0 0 #1f7a7a, -2px 0 0 #1f7a7a, 0 2px 0 #1f7a7a, 0 -2px 0 #1f7a7a, 1px 1px #1f7a7a, -1px -1px 0 #1f7a7a, 1px -1px 0 #1f7a7a, -1px 1px 0 #1f7a7a;
+}
+
+#backtext{
+    left: 33%;
+}
+
+
+.registration
+{
+	position: relative;
+    width: 30%;
+	top: 270px;
+	left: 33%;
+    background: rgba(0,0,0,0.4);
+    padding: 3%;
+    box-shadow: 0 0 10px .1px;
+}

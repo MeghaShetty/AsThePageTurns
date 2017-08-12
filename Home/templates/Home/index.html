@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AsThePageTurns</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Home/ind.css' %}">
+    {% block css %}
+    {% endblock %}
+</head>
+<body class="container-fluid bg-overlay">
+  <div class="container-fluid">
+	<div class="row">
+        <svg viewBox="0 0 960 250">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="80%">AsThePageTurns </text>
+            </symbol>
+
+            <g class = "g-ants">
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+            </g>
+        </svg>
+	</div>
+    <div class="wrapper">
+        <div class="line"></div>
+        <a href="{% url 'Home:home' %}"><div class="circle">
+        EXPLORE!
+        </div></a>
+    </div>
+    <div class = "info">
+        <p>You can</p>
+        <b>
+            <span1>
+            read our stories!<br>
+            create your own story!<br>
+            connect with others in community!
+          </span1>
+        </b>
+    </div>
+  </div>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

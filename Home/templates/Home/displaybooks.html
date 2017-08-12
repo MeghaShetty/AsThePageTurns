@@ -1,0 +1,63 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css'%}">
+{% endblock %}
+
+
+{% block body %}
+<h2 align="center">So many books, too little time.</h2>
+    <hr id="partition">
+
+{% if book %}
+<div class="container-fluid">
+            <ul class="grid effect-7" id="grid">
+           {% for bk in book %}
+                {% if bk.publish == True %}
+                <li>
+                    <div class="grid"><div id="descrip" ><a href="{% url 'Home:prologue' bk.bok_id bk.author %}"><img src="{{ bk.coverpage.url }}"></a>
+                    <hr id="newpart"><p>
+                            <a href="{% url 'Home:prologue' bk.bok_id bk.author %}">{{ bk.title }}</a></p>
+                        <hr>
+                    <div class="chip">
+                            {% if user.is_authenticated %}
+                                <p id="au1"><b>Author:</b> <a href="{% url 'Home:other_user' bk.author %}">  {{bk.author}} </a></p>
+                            {% else %}
+                                <p id="au2"><b>Author:</b> <a href="{% url 'Home:log_in' %}">  {{bk.author}} </a></p>
+                            {% endif %}
+                            {% for g in gen %}
+                                {% if g.genre_id == bk.genre %}
+                                        <p><b>Genre:</b>  {{ g.genre }}</p>
+                                {% endif %}
+                            {% endfor %}
+                    <h5><img src="{% static 'Home/images/like.png'%}" style="width: 20px; height: 20px"> {{bk.no_of_likes}} likes</h5>
+                    </div>
+                    </div>
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+            </ul>
+
+</div>
+
+
+        {% load static %}
+        <script src="{% static 'Home/modernizr.custom.js' %}"></script>
+		<script src="{% static 'Home/masonry.pkgd.min.js' %}"></script>
+		<script src="{% static 'Home/imagesloaded.js' %}"></script>
+		<script src="{% static 'Home/classie.js' %}"></script>
+		<script src="{% static 'Home/AnimOnScroll.js' %}"></script>
+		<script>
+			new AnimOnScroll( document.getElementById( 'grid' ), {
+				minDuration : 0.4,
+				maxDuration : 0.7,
+				viewportFactor : 0.2
+			} );
+		</script>
+{% else %}
+<h2 align="center">None available yet!</h2>
+{% endif %}
+{% endblock %}

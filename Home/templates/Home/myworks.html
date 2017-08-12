@@ -1,0 +1,64 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css'%}">
+{% endblock %}
+
+{% block body %}
+
+ <h2 align="center"><b>Your Works</b></h2>
+<h2 align="center">Books are a uniquely portable magic!</h2>
+    <hr id="partition">
+
+  {% if userr %}
+
+<div class="container-fluid">
+            <ul class="grid effect-7" id="grid">
+          {% for bk in userr %}
+
+                 <li>
+                            <div class="grid"><div id="descrip" ><a href="{% url 'Home:prologue' bk.bok_id bk.author %}"><img src="{{ bk.coverpage.url }}"></a>
+                            <hr id="newpart"><p>
+                                    <a href="{% url 'Home:prologue' bk.bok_id bk.author %}">{{ bk.title }}</a></p>
+                                <hr>
+                            <div class="chip">
+                                    {% for g in gen %}
+                                        {% if g.genre_id == bk.genre %}
+                                                <p><b>Genre:</b>  {{ g.genre }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+
+                            </div>
+                            </div><br>
+                                {% if bk.publish == False %}
+                                <a href="{% url 'Home:publish' bk.bok_id %}"><button type="button" class="btn btn-default btn-lg" id = "newbutton"> Publish </button></a><br>
+                                {% else %}
+                                <a href="{% url 'Home:unpublish' bk.bok_id %}"><button type="button" class="btn btn-default btn-lg" id = "newbutton"> Unpublish </button></a><br>
+                                {% endif %}
+                                <a href="{% url 'Home:deletebook' bk.bok_id %}"><button type="button" class="btn btn-default btn-lg" id = "newbutton"> Delete </button></a><br>
+                            </div>
+                        </li>
+            {% endfor %}
+                </ul>
+    </div>
+{% load static %}
+        <script src="{% static 'Home/modernizr.custom.js' %}"></script>
+		<script src="{% static 'Home/masonry.pkgd.min.js' %}"></script>
+		<script src="{% static 'Home/imagesloaded.js' %}"></script>
+		<script src="{% static 'Home/classie.js' %}"></script>
+		<script src="{% static 'Home/AnimOnScroll.js' %}"></script>
+		<script>
+			new AnimOnScroll( document.getElementById( 'grid' ), {
+				minDuration : 0.4,
+				maxDuration : 0.7,
+				viewportFactor : 0.2
+			} );
+		</script>
+
+  {% else %}
+    <div class = "notavailable">No works yet!</div>
+  {% endif %}
+
+
+{%  endblock %}

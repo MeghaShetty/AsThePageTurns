@@ -1,0 +1,59 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Home/profilecss.css'%}">
+{% endblock %}
+
+{% block body %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'Home:home' %}">Home</a></li>
+    <li class="active">Prologue: {{book.title}}</li>
+</ol>
+
+<div class="container" id="prologuebox">
+        <div class="col-md-4">
+            <img id="prologuepic" src="{{ book.coverpage.url }}"/>
+        </div>
+        <div class="col-md-6">
+            <blockquote>
+                <h2>{{book.title}}</h2>
+                <cite>
+                        {% for g in gen %}
+                            {% if g.genre_id == book.genre %}
+                                <h4>{{g.genre}}</h4>
+                            {% endif %}
+                        {% endfor %}
+                </cite>
+                {% if user.is_authenticated %}
+                        <h4><a href="{% url 'Home:other_user' author %}">{{author}}</a></h4>
+                {% else %}
+                        <h4>{{userr.username}}</h4>
+                 {% endif %}
+                 <h5><img src="{% static 'Home/images/like.png'%}" style="width: 20px; height: 20px"> {{book.no_of_likes}} likes</h5>
+            </blockquote>
+            <p>{{book.prologue}}</p>
+        </div>
+</div>
+        <div class="col-md-9 col-md-offset-2 text-center">
+                {% if user.is_authenticated %}
+                        <a href="{% url 'Home:readbook' book.bok_id %}" class="btn btn-default secondary-bg btn-lg"><img src="{% static 'Home/images/read.png'%}" style="width: 20px; height: 20px"> Read Book</a>
+                        {% if pc %}
+                            <a href="{% url 'Home:mycollection' %}" class="btn btn-default page-scroll primary-bg btn-lg"><img src="{% static 'Home/images/done.png'%}" style="width: 20px; height: 20px"> In library </a>
+                        {% else %}
+                            <a href="{% url 'Home:add' book.bok_id %}" class="btn btn-default page-scroll primary-bg btn-lg"><img src="{% static 'Home/images/add.png'%}" style="width: 20px; height: 20px"> Add to Library </a>
+                        {% endif %}
+                        {% if liked == True %}
+                            <a href="{% url 'Home:unlike' book.bok_id %}" class="btn btn-default page-scroll primary-bg btn-lg"><img src="{% static 'Home/images/unlike.png'%}" style="width: 20px; height: 20px"> Unlike </a>
+                        {% else %}
+                            <a href="{% url 'Home:like' book.bok_id %}" class="btn btn-default page-scroll primary-bg btn-lg"><img src="{% static 'Home/images/like.png'%}" style="width: 20px; height: 20px"> Like </a>
+                        {% endif %}
+                {% else %}
+                        <a href="{% url 'Home:log_in' %}" class="btn btn-default page-scroll primary-bg btn-lg"><img src="{% static 'Home/images/read.png'%}" style="width: 20px; height: 20px"> Read Book</a>
+                {% endif %}
+                {% if book.author == request.user %}
+                       <a href="{% url 'Home:writebook' book.bok_id %}" class="btn btn-default secondary-bg btn-lg"><img src="{% static 'Home/images/write.png'%}" style="width: 20px; height: 20px"> Write Book</a>
+                {% endif %}
+        </div>
+
+{% endblock %}

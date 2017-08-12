@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AsThePageTurns</title>
+        {% load staticfiles %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Lobster+Two:700italic' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'Home/basecss.css'%}">
+        {% block css %}
+        {% endblock %}
+
+</head>
+<body>
+<div class="container-fluid">
+
+<nav class="navbar navbar-default navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header" >
+      <a class="navbar-brand" href="{% url 'Home:home' %}">AsThePageTurns</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href=""><small><span class="glyphicon glyphicon-book"></span></small> Browse <i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+
+                    <div class="col-sm-4">
+                        <div class="container">
+                          <li style="padding:1%"><a href="{% url 'Home:category' 1 %}"> Mystery </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 2 %}"> Romance </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 3 %}"> Humour </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 4 %}"> Young Adult </a></li>
+                  </div>
+                    </div>
+
+                  <div class="col-sm-4">
+                      <div class="container">
+                          <li style="padding:1%"><a href="{% url 'Home:category' 5 %}"> Short Stories </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 6 %}"> Horror </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 7 %}"> Fantasy </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 8 %}"> Fiction </a></li>
+                  </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                      <div class="container">
+                          <li style="padding:1%"><a href="{% url 'Home:category' 9 %}"> Non-Fiction </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 10 %}"> General </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 11 %}"> Fanfiction </a></li>
+                          <li style="padding:1%"><a href="{% url 'Home:category' 12 %}"> Chicklit </a></li>
+                  </div>
+                  </div>
+                 </ul>
+              </li>
+      <li>
+          <a href="{% url 'Home:community' %}"><i class="fa fa-globe"></i> Community </a>
+      </li>
+      <li>
+          <form method="get" action="{% url 'Home:search' %}" >
+              <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                      <input type="text" class="  search-query form-control" name="searchbox" placeholder="Search using book or author" />
+                      <span class="input-group-btn">
+                          <button class="btn btn-default" type="submit" id="searchbutton">
+                              <small><span class=" glyphicon glyphicon-search"></span></small>
+                          </button>
+                      </span>
+                  </div>
+              </div>
+          </form>
+
+      </li>
+     </ul>
+        <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href=""><small><span class="glyphicon glyphicon-user"></span></small>  Hey {{user.get_username}}! <i class="fa fa-caret-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'Home:profile' %}"><small><span class="glyphicon glyphicon-eye-open"></span></small> View Profile </a></li>
+                <li><a href="{% url 'Home:createstory' %}"><small><span class="glyphicon glyphicon-pencil"></span></small> Create A New Story </a></li>
+                <hr id="partition">
+                <li><a href="{% url 'Home:termspri' %}"> Terms of Privacy </a></li>
+                <li><a href="{% url 'Home:aboutus' %}"> About Developers </a></li>
+                <hr id="partition">
+                  <li><a href="{% url 'Home:log_out' %}"><small><span class="glyphicon glyphicon-log-out"></span></small> Logout</a></li>
+              </ul>
+            </li>
+
+        {% else %}
+
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href=""><small><span class="glyphicon glyphicon-user"></span></small>  Hey There! <i class="fa fa-caret-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'Home:log_in' %}"><small><span class="glyphicon glyphicon-log-in"></span></small> Login </a></li>
+                <li><a href="{% url 'Home:register' %}"><small><span class="glyphicon glyphicon-ok"></span></small> Sign Up</a></li>
+                <hr id="partition">
+                <li><a href="{% url 'Home:termspri' %}"> Terms of Privacy </a></li>
+                <li><a href="{% url 'Home:aboutus' %}"> About Developers </a></li>
+              </ul>
+            </li>
+
+        {% endif %}
+     </ul>
+</div>
+
+</nav>
+    </div>
+
+
+{% block body %}
+
+    {% block content %}
+    {% endblock %}
+
+
+    {% block formbody %}
+    {% endblock %}
+
+{% endblock %}
+<br>
+</body>
+</html>

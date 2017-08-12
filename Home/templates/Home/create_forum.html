@@ -1,0 +1,52 @@
+{% extends 'Home/base.html' %}
+
+
+{% block css%}
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css' %}"/>
+
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-default" style="background-color: transparent; border: transparent">
+    <div class="panel-body">
+        <h2 align="center">Community</h2>
+        <h2 align="center">Join an interesting discussion or start a new discussion!</h2><br>
+        <hr id="partition">
+    </div>
+</div>
+<div class="container" id="formtemp">
+	<div class="login-container">
+        {% block content %}
+        <div class="content">
+                <div class="container-fluid">
+                <h3>Let's start a new discussion!</h3>
+                    <hr id="partition">
+                    <br><br><br>
+                {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                    <hr id="partition">
+                    <br><br><br>
+                {% endif %}
+
+    </div>
+    </div>
+        {% endblock %}
+        <div class="form-box">
+            {% block formbody %}
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label for="topic"> Topic :</label><br>
+                        <input type="text" name="topic" id="topic"><br><br><br>
+                        <label for="content"> Content :</label><br>
+                        <input type="text" name="content" id="content"><br><br><br>
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-default">Submit</button><br><br><br>
+                            </div>
+                    </form>
+            </div>
+            {% endblock %}
+    </div>
+</div>
+{% endblock %}

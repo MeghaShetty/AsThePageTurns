@@ -1,0 +1,48 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Home/profilecss.css'%}">
+{% endblock %}
+
+{% block body %}
+        <div class="container-fluid-1">
+            {% if profiles %}
+            <img id="proper" src="{{ profiles.coverpic.url }}">
+     {% endif %}
+<section id="about" class="section-content about">
+        <div class="container">
+        	<div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                <figure class="fig-profile wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                	{% if profiles %}
+                        <img class="img-responsive img-circle img-profile" src="{{ profiles.profilepic.url }}">
+                    {% else %}
+                        <img class="img-responsive img-circle img-profile" src="{% static 'Home/images/dp.png' %}">
+                    {% endif %}
+                    </figure>
+                    <div class="clearfix"></div>
+
+                    <h2 class="name"><b>{{author.username}}</b></h2>
+                    <div class="title-divider">
+                        <span class="hr-divider col-xs-5"></span>
+                        <span class="icon-separator col-xs-2"><i class="fa fa-star"></i></span>
+                        <span class="hr-divider col-xs-5"></span>
+                    </div>
+                    {% if profiles %}
+                        <h4 class="extra">{{profiles.about}}</h4><br>
+                        <h4 class="extra">{{profiles.blog}}</h4>
+                    {% endif %}
+
+
+                </div>
+
+                <div class="col-md-8 col-md-offset-2 text-center">
+                <a href="mailto:{{author.email}}" class="btn btn-default secondary-bg btn-lg"> Connect </a>
+                <a href="{% url 'Home:user_works' author.username %}" class="btn btn-default page-scroll primary-bg btn-lg"> Works </a>
+                </div>
+            </div>
+        </div>
+</section>
+            </div>
+
+{% endblock %}

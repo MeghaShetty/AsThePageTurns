@@ -1,0 +1,40 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css'%}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container" style="padding-top: 10%;overflow:hidden" >
+    <div class="col-sm-4">
+<div class="card">
+      <img src="{% static 'Home/images/dp.png'%}" alt="Maitri" style="width:100%">
+      <div class="container">
+        <h4><b>Maitri Parikh</b></h4>
+        <h4><b>Web Developer</b></h4>
+      </div>
+    </div>
+    </div>
+            <div class="col-sm-4">
+                <div class="card">
+      <img src="{% static 'Home/images/dp.png'%}" alt="Niharika" style="width:100%">
+      <div class="container">
+        <h4><b>Niharika Parsone</b></h4>
+        <h4><b>Web Developer</b></h4>
+      </div>
+    </div>
+            </div>
+            <div class="col-sm-4">
+                   <div class="card">
+      <img src="{% static 'Home/images/dp.png'%}" alt="Megha" style="width:100%">
+      <div class="container">
+        <h4><b>Megha Shetty</b></h4>
+        <h4><b>Web Developer</b></h4>
+      </div>
+            </div>
+                </div>
+            </div>
+
+{% endblock %}

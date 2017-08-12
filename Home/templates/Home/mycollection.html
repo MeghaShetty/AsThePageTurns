@@ -1,0 +1,62 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Home/homecss.css'%}">
+{% endblock %}
+
+{% block body %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'Home:home' %}">Home</a></li>
+    <li><a href="{% url 'Home:profile' %}">My Profile</a></li>
+    <li class="active">Personal Collection</li>
+</ol>
+
+
+ <h2 align="center"><b>Your Library</b></h2>
+<h2 align="center">I am not addicted to books. I can quit as soon as I finish the next chapter.</h2>
+<hr id="partition">
+ {% if pc %}
+<div class="container-fluid">
+            <ul class="grid effect-7" id="grid">
+          {% for bk in pc %}
+                 <li>
+                    <div class="grid"><div id="descrip" ><a href="{% url 'Home:prologue' bk.id_book.bok_id bk.id_book.author %}"><img src="{{ bk.id_book.coverpage.url }}"></a>
+                    <hr id="newpart"><p>
+                            <a href="{% url 'Home:prologue' bk.id_book.bok_id bk.id_book.author %}">{{ bk.id_book.title }}</a></p>
+                        <hr>
+                    <div class="chip">
+                        <p id="au1"><b>Author:</b> <a href="{% url 'Home:other_user' bk.id_book.author %}">  {{bk.id_book.author}} </a></p>
+                            {% for g in gen %}
+                                {% if g.genre_id == bk.id_book.genre %}
+                                        <p><b>Genre:</b>  {{ g.genre }}</p>
+                                {% endif %}
+                            {% endfor %}
+
+                    </div>
+                    </div>
+                    </div><br>
+                    <a href="{% url 'Home:removefrompc' bk.id_book.bok_id %}"><button type="button" class="btn btn-default btn-lg" id = "newbutton"> Remove from Collection </button></a><br>
+                 </li>
+            {% endfor %}
+                </ul>
+    </div>
+{% load static %}
+        <script src="{% static 'Home/modernizr.custom.js' %}"></script>
+		<script src="{% static 'Home/masonry.pkgd.min.js' %}"></script>
+		<script src="{% static 'Home/imagesloaded.js' %}"></script>
+		<script src="{% static 'Home/classie.js' %}"></script>
+		<script src="{% static 'Home/AnimOnScroll.js' %}"></script>
+		<script>
+			new AnimOnScroll( document.getElementById( 'grid' ), {
+				minDuration : 0.4,
+				maxDuration : 0.7,
+				viewportFactor : 0.2
+			} );
+		</script>
+{% else %}
+<h2 align="center">No books in your library yet!</h2>
+  {% endif %}
+
+
+{%  endblock %}
